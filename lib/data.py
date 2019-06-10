@@ -39,7 +39,7 @@ def datasets(data_dir, transforms):
     return image_datasets
 
 
-def dataloaders(datasets, batch_size=64, num_workers=4):
+def dataloaders(datasets, batch_size=4, num_workers=4):
     image_dataloaders = {
         x: torch.utils.data.DataLoader(
             datasets[x], batch_size=batch_size,

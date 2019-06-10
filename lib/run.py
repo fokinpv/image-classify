@@ -1,7 +1,6 @@
-import torch
-
 from . import data, model
 
+EPOCHS = 5
 
 def start(data_dir, model_name):
     print("Create image transformations")
@@ -22,6 +21,10 @@ def start(data_dir, model_name):
         num_in_features, hidden_layers=None, num_out_features=102
     )
     model_ = model.create_model(model_name)
+
+    for param in model_.parameters():
+        param.requires_grad = False
+
     model_.classifier = classifier
     #  print(model_)
     criterion = model.criterion(model_name)
@@ -29,5 +32,11 @@ def start(data_dir, model_name):
     sched = model.scheduler(optimizer)
 
     print("Train model")
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-    model.train(device, image_dataloaders, model_, criterion, optimizer, sched)
+    model.train(
+        image_dataloaders, model_, criterion, optimizer, sched, EPOCHS
+    )
+
+    print("Save model")
+    model.save(
+        image_dataloaders, model_, classifier, optimizer, sched, epochs=EPOCHS
+    )
