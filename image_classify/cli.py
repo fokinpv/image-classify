@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import click
 
-from lib import run, predict
+from . import run, predict
 
 
 @click.group()
