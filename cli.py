@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import click
 
-from lib import run
+from lib import run, predict
 
 
 @click.group()
@@ -21,9 +21,15 @@ def train(data_dir, model):
 
 
 @cli.command()
-@click.argument('img_path')
-def classify(img_path):
-    click.echo(f'classify image "{img_path}"')
+@click.argument('image')
+@click.option(
+    '--checkpoint', default='checkpoint_ic_d161.pth',
+    help='Model name'
+)
+def classify(image, checkpoint):
+    click.echo(f'classify image "{image}"')
+    guess = predict.do(image, checkpoint)
+    print(guess)
 
 
 if __name__ == '__main__':

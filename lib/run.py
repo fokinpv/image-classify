@@ -1,6 +1,6 @@
 from . import data, model
 
-EPOCHS = 5
+EPOCHS = 25
 
 def start(data_dir, model_name):
     print("Create image transformations")

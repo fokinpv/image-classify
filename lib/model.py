@@ -66,7 +66,7 @@ def classifier(num_in_features, hidden_layers, num_out_features):
 
 # Adapted from https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html
 def train(
-        dataloaders, model, criterion, optimizer, sched, num_epochs=5
+        dataloaders, model, criterion, optimizer, sched, num_epochs
 ):
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     dataset_sizes = {
@@ -159,6 +159,7 @@ def save(dataloaders, model, classifier, optimizer, scheduler, *, epochs):
         'scheduler': scheduler,
         'optimizer': optimizer.state_dict(),
         'state_dict': model.state_dict(),
-        'class_to_idx': dataloaders['train'].dataset.class_to_idx
+        'class_to_idx': dataloaders['train'].dataset.class_to_idx,
+        'classes': dataloaders['train'].dataset.classes,
     }
     torch.save(checkpoint, 'checkpoint_ic_d161.pth')
