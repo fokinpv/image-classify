@@ -4,7 +4,7 @@ setup(
     name='image-classify',
     version='0.0.1',
     description=(
-      'CLI interface to experiment with image classification with PyTorch'
+        'CLI interface to experiment with image classification with PyTorch'
     ),
     install_requires=[
         'click>=7',
@@ -16,7 +16,5 @@ setup(
     include_package_data=True,
     packages=find_packages(),
     python_requires='>=3.6',
-    entry_points={
-        'console_scripts': ['image-classify=image_classify.cli:cli']
-    },
+    scripts=['image-classify']
 )

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import click
 
-from . import run, predict
+from image_classify import run, predict
 
 
 @click.group()
