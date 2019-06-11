@@ -47,6 +47,7 @@ def do(image_path, checkpoint_path, topk=2):
     """
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     model, classes = load_checkpoint(checkpoint_path)
+    model.to(device)
 
     # Implement the code to predict the class from an image file
     img = Image.open(image_path)

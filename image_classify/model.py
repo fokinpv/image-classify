@@ -162,4 +162,4 @@ def save(dataloaders, model, classifier, optimizer, scheduler, *, epochs):
         'class_to_idx': dataloaders['train'].dataset.class_to_idx,
         'classes': dataloaders['train'].dataset.classes,
     }
-    torch.save(checkpoint, 'checkpoint_ic_d161.pth')
+    torch.save(checkpoint, 'checkpoint.pth')

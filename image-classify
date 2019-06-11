@@ -23,7 +23,7 @@ def train(data_dir, model):
 @cli.command()
 @click.argument('image')
 @click.option(
-    '--checkpoint', default='checkpoint_ic_d161.pth',
+    '--checkpoint', default='checkpoint.pth',
     help='Model name'
 )
 def classify(image, checkpoint):
