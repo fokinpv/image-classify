@@ -1,19 +1,15 @@
 from . import data, model
 
-EPOCHS = 25
 
-def start(data_dir, model_name):
+def start(data_dir, model_name, epochs):
     print("Create image transformations")
     image_transforms = data.transforms()
-    print(image_transforms)
 
     print("Create image datasets")
     image_datasets = data.datasets(data_dir, image_transforms)
-    print(image_datasets)
 
     print("Create image dataloaders")
     image_dataloaders = data.dataloaders(image_datasets)
-    print(image_dataloaders)
 
     print("Create model")
     num_in_features = model.num_in_features(model_name)
@@ -26,17 +22,16 @@ def start(data_dir, model_name):
         param.requires_grad = False
 
     model_.classifier = classifier
-    #  print(model_)
     criterion = model.criterion(model_name)
     optimizer = model.optimizer(model_)
     sched = model.scheduler(optimizer)
 
     print("Train model")
     model.train(
-        image_dataloaders, model_, criterion, optimizer, sched, EPOCHS
+        image_dataloaders, model_, criterion, optimizer, sched, epochs
     )
 
     print("Save model")
     model.save(
-        image_dataloaders, model_, classifier, optimizer, sched, epochs=EPOCHS
+        image_dataloaders, model_, classifier, optimizer, sched, epochs
     )

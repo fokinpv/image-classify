@@ -15,9 +15,13 @@ def cli():
     '--model', default='densenet',
     help='Model name'
 )
-def train(data_dir, model):
+@click.option(
+    '--epochs', default=25,
+    help='Number of iteration in training process'
+)
+def train(data_dir, model, epochs):
     click.echo(f'train model on data "{data_dir}"')
-    run.start(data_dir, model)
+    run.start(data_dir, model, epochs)
 
 
 @cli.command()

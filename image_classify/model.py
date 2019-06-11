@@ -64,7 +64,7 @@ def classifier(num_in_features, hidden_layers, num_out_features):
     return classifier
 
 
-# Adapted from https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html
+# https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html
 def train(
         dataloaders, model, criterion, optimizer, sched, num_epochs
 ):
@@ -147,7 +147,7 @@ def train(
     return model
 
 
-def save(dataloaders, model, classifier, optimizer, scheduler, *, epochs):
+def save(dataloaders, model, classifier, optimizer, scheduler, epochs):
     checkpoint = {
         'input_size': 2208,
         'output_size': 102,
