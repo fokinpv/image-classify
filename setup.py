@@ -10,8 +10,7 @@ setup(
         'click>=7',
         'torch>=1',
         'torchvision>=0.3',
-        # pin google colab version
-        'pillow==4.3',
+        'pillow>=4.3',
         'numpy>=1.16',
     ],
     include_package_data=True,

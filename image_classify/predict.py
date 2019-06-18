@@ -41,13 +41,12 @@ def process_image(image):
     return image
 
 
-def do(image_path, checkpoint_path, topk=2):
+def do(image_path, model, classes, topk=2):
     """
     Predict the class (or classes) of an image
     using a trained deep learning model.
     """
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-    model, classes = load_checkpoint(checkpoint_path)
     model.to(device)
 
     # Implement the code to predict the class from an image file

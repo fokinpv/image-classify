@@ -1,7 +1,7 @@
 from . import data, model
 
 
-def start(data_dir, model_name, epochs):
+def start(data_dir, netname, epochs):
     print("Create image transformations")
     image_transforms = data.transforms()
 
@@ -12,26 +12,26 @@ def start(data_dir, model_name, epochs):
     image_dataloaders = data.dataloaders(image_datasets)
 
     print("Create model")
-    num_in_features = model.num_in_features(model_name)
+    num_in_features = model.num_in_features(netname)
     classifier = model.classifier(
         num_in_features, hidden_layers=None, num_out_features=102
     )
-    model_ = model.create_model(model_name)
+    net = model.create_model(netname)
 
-    for param in model_.parameters():
+    for param in net.parameters():
         param.requires_grad = False
 
-    model_.classifier = classifier
-    criterion = model.criterion(model_name)
-    optimizer = model.optimizer(model_)
+    net.classifier = classifier
+    criterion = model.criterion(netname)
+    optimizer = model.optimizer(net)
     sched = model.scheduler(optimizer)
 
     print("Train model")
     model.train(
-        image_dataloaders, model_, criterion, optimizer, sched, epochs
+        image_dataloaders, net, criterion, optimizer, sched, epochs
     )
 
     print("Save model")
     model.save(
-        image_dataloaders, model_, classifier, optimizer, sched, epochs
+        image_dataloaders, net, classifier, optimizer, sched, epochs
     )
