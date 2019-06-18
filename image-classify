@@ -32,7 +32,8 @@ def train(data_dir, model, epochs):
 )
 def classify(image, checkpoint):
     click.echo(f'classify image "{image}"')
-    guess = predict.do(image, checkpoint)
+    model, classes = predict.load_checkpoint(checkpoint)
+    guess = predict.do(image, model, classes)
     print(guess)
 
 

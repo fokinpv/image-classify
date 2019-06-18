@@ -11,7 +11,7 @@ $ !pip install git+https://github.com/fokinpv/image-classify
 
 - upload training data and unzip it
 ```sh
-$ unzip -qq training_data.zip
+$ !unzip -qq training_data.zip
 ```
 
 - train network
