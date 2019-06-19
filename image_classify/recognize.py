@@ -41,7 +41,7 @@ def process_image(image):
     return image
 
 
-def do(image_path, model, classes, topk=2):
+def do(image_path, model, topk=2):
     """
     Predict the class (or classes) of an image
     using a trained deep learning model.
@@ -66,5 +66,4 @@ def do(image_path, model, classes, topk=2):
     topk = ps.cpu().topk(topk)
 
     probs, preds = (e.data.numpy().squeeze().tolist() for e in topk)
-    print(probs, preds)
-    return classes[preds[0]]
+    return zip(preds, probs)
