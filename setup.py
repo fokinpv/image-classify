@@ -1,8 +1,8 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(
     name='image-classify',
-    version='0.3.0',
+    version='0.4.0',
     description=(
         'CLI interface to experiment with image classification with PyTorch'
     ),
@@ -14,7 +14,11 @@ setup(
         'numpy>=1.16',
     ],
     include_package_data=True,
-    packages=find_packages(),
+    packages=['image_classify'],
     python_requires='>=3.6',
-    scripts=['image-classify']
+    # scripts=['image-classify']
+    entry_points='''
+        [console_scripts]
+        image-classify=image_classify.cli:cli
+    ''',
 )
